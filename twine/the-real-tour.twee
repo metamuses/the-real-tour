@@ -1,0 +1,394 @@
+:: StoryTitle
+The Real Tour
+
+
+:: StoryData
+{
+  "ifid": "69EECAD0-099F-4106-B85E-4F4E95A82190",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Start",
+  "zoom": 1
+}
+
+
+:: Account settings {"position":"925,575","size":"100,100"}
+Your account settings
+
+| Email/phone: (print: $email)
+| Password: (print: $password)
+| Avatar: (print: $chosenAvatar)
+
+
+:: Ananas {"position":"650,1200","size":"100,100"}
+You have chosen the Ananas.
+
+(set: $chosenAvatar to "Ananas")
+
+[[Map]]
+
+
+:: Choose avatar {"position":"575,925","size":"100,100"}
+Choose avatar:
+
+[[Flower]]
+[[Ananas]]
+[[Dinosaur]]
+[[Owl]]
+
+
+:: Choose museums {"position":"575,425","size":"100,100"}
+Choose museum:
+
+(if: not ($completedMuseums contains "Mineralogical"))[
+  [[Mineralogical Museum]]
+]
+
+(if: not ($completedMuseums contains "Zoological"))[
+  [[Zoological Museum]]
+]
+
+(if: not ($completedMuseums contains "Physics"))[
+  [[Physics Museum]]
+]
+
+(if: not ($completedMuseums contains "Specola"))[
+  [[Specola Museum]]
+]
+
+
+:: Complete Mineralogy game {"position":"1350,575","size":"100,100"}
+Great job! You completed the Mineralogy Museum challenge.
+
+(set: $chosenMuseum to "")
+
+(if: "Mineralogical" is not in $completedMuseums)[
+  (set: $completedMuseums to $completedMuseums + (a: "Mineralogical"))
+]
+
+[[Back to map|Map]]
+
+
+:: Complete Physics game {"position":"1350,825","size":"100,100"}
+Great job! You completed the Physics Museum challenge.
+
+(set: $chosenMuseum to "")
+
+(if: "Physics" is not in $completedMuseums)[
+  (set: $completedMuseums to $completedMuseums + (a: "Physics"))
+]
+
+[[Back to map|Map]]
+
+
+:: Complete Specola game {"position":"1350,950","size":"100,100"}
+Great job! You completed the Specola Museum challenge.
+
+(set: $chosenMuseum to "")
+
+(if: "Specola" is not in $completedMuseums)[
+  (set: $completedMuseums to $completedMuseums + (a: "Specola"))
+]
+
+[[Back to map|Map]]
+
+
+:: Complete Zoology game {"position":"1350,700","size":"100,100"}
+Great job! You completed the Zoology Museum challenge.
+
+(set: $chosenMuseum to "")
+
+(if: "Zoological" is not in $completedMuseums)[
+  (set: $completedMuseums to $completedMuseums + (a: "Zoological"))
+]
+
+[[Back to map|Map]]
+
+
+:: Create account {"position":"575,800","size":"100,100"}
+We are almost ready... let’s create your explorer account!
+
+| Email (or phone number): (input-box: bind $email, "", 1)
+| Password: (input-box: bind $password, "", 1)
+
+(set: $loggedIn to true)
+
+[[Choose avatar]]
+
+
+:: Dinosaur {"position":"500,1050","size":"100,100"}
+You have chosen the Dinosaur.
+
+(set: $chosenAvatar to "Dinosaur")
+
+[[Map]]
+
+
+:: Extra museum {"position":"400,800","size":"100,100"}
+Hey explorer! This museum is right on the other side of the street, want to add it to the map?
+
+[[Sure|Create account]]
+[[Not really|Create account]]
+
+
+:: Flower {"position":"650,1050","size":"100,100"}
+You have chosen the Flower.
+
+(set: $chosenAvatar to "Flower")
+
+[[Map]]
+
+
+:: Get coupon for free laboratory {"position":"1625,825","size":"100,100"}
+Show this QR code at the museum entrance to receive a free lab experience!
+
+[[Back to rewards|Get rewards!]]
+
+
+:: Get rewards! {"position":"1500,750","size":"100,100"}
+Congratulations, Real Explorer!
+You’ve completed all the museum challenges!
+
+[[Get your real explorer map]]
+
+[[Get coupon for free laboratory]]
+
+
+[[Back to Map|Map]]
+
+
+:: Get your real explorer map {"position":"1625,675","size":"100,100"}
+Show this QR code at the museum entrance to receive the poster!
+
+[[Back to rewards|Get rewards!]]
+
+
+:: Login {"position":"775,425","size":"100,100"}
+Insert your credentials to login.
+
+| Email/phone number: (input-box: bind $email, "", 1)
+| Password: (input-box: bind $password, "", 1)
+
+(set: $loggedIn to true)
+(set: $chosenAvatar to "Flower")
+
+[[Login|Map]]
+
+
+:: Map {"position":"950,750","size":"100,100"}
+Map of the museums
+
+(if: $completedMuseums's length is 4)[
+  You’ve completed all the museum challenges!
+  [[Get rewards!]]
+]
+(elseif: $chosenMuseum is "mineralogical")[
+  [[Explore the Mineralogical Museum->Start Mineralogical]]
+]
+(elseif: $chosenMuseum is "zoological")[
+  [[Enter the Zoological Museum->Start Zoological]]
+]
+(elseif: $chosenMuseum is "specola")[
+  [[Go to the Specola Tower->Start Specola]]
+]
+(elseif: $chosenMuseum is "physics")[
+  [[Visit the Physics Museum->Start Physics]]
+]
+(else:)[
+  [[Choose museums]]
+]
+
+---
+
+[[Account settings]]
+[[Tasks progress]]
+
+
+:: Mineralogical Museum {"position":"500,550","size":"100,100"}
+You have chosen the Mineralogical museum.
+
+(set: $chosenMuseum to "mineralogical")
+
+(if: $loggedIn)[
+  [[Go to the Map->Map]]
+]
+(else:)[
+  [[Create account]]
+]
+
+
+:: Owl {"position":"500,1200","size":"100,100"}
+You have chosen the Owl.
+
+(set: $chosenAvatar to "Owl")
+
+[[Map]]
+
+
+:: Physics Museum {"position":"500,675","size":"100,100"}
+You have chosen the Physics museum.
+
+(set: $chosenMuseum to "physics")
+
+(if: $loggedIn)[
+  [[Go to the Map->Map]]
+]
+(else:)[
+  [[Create account]]
+]
+
+
+:: Specola Museum {"position":"650,675","size":"100,100"}
+You have chosen the Specola museum.
+
+(set: $chosenMuseum to "specola")
+
+(if: $loggedIn)[
+  [[Go to the Map->Map]]
+]
+(else:)[
+  [[Create account]]
+]
+
+
+:: Start {"position":"675,300","size":"100,100"}
+Welcome, Real Explorer!
+Are you ready to begin your adventure?
+
+[[Start a new adventure|Choose museums]]
+[[I'm already exploring|Login]]
+
+(set: $loggedIn to false)
+(set: $chosenAvatar to "")
+(set: $chosenMuseums to (a:))
+(set: $completedMuseums to (a:))
+
+
+:: Start Mineralogical {"position":"1100,575","size":"100,100"}
+Welcome to the Mineralogical Museum!
+
+[[Start Mineralogy game]]
+
+
+:: Start Mineralogy game {"position":"1225,575","size":"100,100"}
+These crystals look stunning — but not all are real!
+Spot the AI-generated ones.
+
+[[Complete Mineralogy game]]
+
+
+:: Start Physics {"position":"1100,825","size":"100,100"}
+Welcome to the Physics Museum!
+
+[[Start Physics game]]
+
+
+:: Start Physics game {"position":"1225,825","size":"100,100"}
+Are these machines real or not? Can you spot the problems?
+
+[[Complete Physics game]]
+
+
+:: Start Specola {"position":"1100,950","size":"100,100"}
+Welcome to the Specola Museum!
+
+[[Start Specola game]]
+
+
+:: Start Specola game {"position":"1225,950","size":"100,100"}
+This skyline is amazing, but something is off...
+Can you reconstruct it?
+
+[[Complete Specola game]]
+
+
+:: Start Zoological {"position":"1100,700","size":"100,100"}
+Welcome to the Zoological Museum!
+
+[[Start Zoology game]]
+
+
+:: Start Zoology game {"position":"1225,700","size":"100,100"}
+Prepare to recognize these animals and their body parts.
+
+[[Complete Zoology game]]
+
+
+:: Tasks progress {"position":"925,925","size":"100,100"}
+This is the list of museum games you have completed:
+
+(if: $completedMuseums's length is 0)[
+  No museum completed yet
+]
+(else:)[
+  (for: each _item, ...$completedMuseums)[
+    - (print: _item)
+  ]
+]
+
+
+:: Zoological Museum {"position":"650,550","size":"100,100"}
+You have chosen the Zoological museum.
+
+(set: $chosenMuseum to "zoological")
+
+(if: $loggedIn)[
+  [[Go to the Map->Map]]
+]
+(else:)[
+  [[Create account]]
+]
+
+
+:: StoryStylesheet [stylesheet]
+/* Import an 8-bit pixel font */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Story background */
+tw-story, body {
+  background-color: #709BF0;
+  margin: 0;
+  padding: 0;
+  font-family: 'Press Start 2P', monospace;
+  color: #000;
+}
+
+/* Passage container for padding */
+tw-passage {
+  border: 4px solid #000;
+  padding: 1em;
+  margin: 1em auto;
+  max-width: 640px;
+  box-shadow: 0 0 0 8px #FFF inset;
+}
+
+/* Style for all links (choices) */
+tw-link {
+  display: inline-block;
+  margin: 0.5em 0.5em 0 0;
+  padding: 0.6em 1em;
+  background-color: #DF923C;
+  color: #000;
+  border: 3px solid #000;
+  text-decoration: none;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1em;
+  line-height: 1.2;
+  text-align: center;
+  /* give it that chunky pixel edge */
+  image-rendering: pixelated;
+}
+
+/* Hover/active effect */
+tw-link:hover,
+tw-link:active {
+  background-color: #E0892A;
+  cursor: pointer;
+}
+
+/* Make sure link text is blocky */
+tw-link *, tw-link {
+  /* prevents font-smoothing for crisp pixels */
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+}
